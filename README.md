@@ -1,44 +1,42 @@
-
-
-```bash
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/flavioespinoza/docker-react-node.git
-git push -u origin master
-```
-
-
 # docker-react-node
 
-The MERN stack starter demonstrates a working application that uses a React frontend, with a backend build with ExpressJS and MongoDB. It shows how the client can make client HTTP requests and maintain persistent sessions. 
+The MERN stack starter demonstrates a working application that uses a Create-React-App frontend, with a Node and Koa backend, and MongoDB. It shows how the client can make client HTTP requests and maintain persistent sessions. 
+
+## Dependencies
+
+  - [axios](https://github.com/mzabriskie/axios) - promise-based HTTP client
+  - [foreman](https://github.com/strongloop/node-foreman) - a Procfile-based application utility
+  - [mongoose](http://mongoosejs.com/) - mongodb object modelling
+  - [express](https://expressjs.com/) - minimalist Node.js framework
+  - [react](https://facebook.github.io/react/) - JS library for building user interfaces
+
 
 ## Getting Started
 
 To run a development environment, you can use the `start-dev` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 3100. These development servers will automatically reload if changes are made to the source.
 
-  - Install dependencies with:
+1. Install dependencies:
 
-    ```
-    yarn
-    ```
-  
-  - Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
-   
-  - Start the development environment:
+	```bash
+	yarn
+	```
 
-    ```
-    yarn start-dev
-    ```
+1. Install [MongoDB](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/)
+
+1. Start the development environment:
+
+	```bash
+	yarn start-dev
+	```
 
 ## Docker Compose
 
-  If you use Docker and Docker Compose, you can start the entire project with:
+If you use Docker and Docker Compose, you can start the entire project with:
 
-  ```
-  docker-compose up
-  ```
- 
+```bash
+docker-compose up
+```
+
 ## Configuration (Optional)
 
 By default, the server will expect to connect to a MongoDB instance running on localhost:27017. However, you can customize the environment to use different values for the MongoDB host. To do that, you can create a `.env` file for specifying credential information for MongoDB. 
@@ -69,13 +67,13 @@ Where the URL, username, and password are set to your preferences.
 
 If you would like to run the development tools inside of a docker container, you can set up a local Docker development environment by building the image:
 
-```
+```bash
 docker build -f Dockerfile-tools -t mern-example:latest .
 ```
 
 And running the image:
 
-```
+```bash
 docker run -v ${PWD}:/usr/app -p 3000:3100 -t mern-example:latest
 ```
 
@@ -87,31 +85,31 @@ You can use Helm and our bundled chart for quickly deploying your application.
 
 You can use minikube for creating a local testing cluster. Start up your cluster:
 
-```
+```bash
 minikube start
 ```
 
 Make sure you set your Docker environment to use it. This is important so that the cluster has your Docker images.
 
-```
+```bash
 eval $(minikube docker-env)
 ```
 
 Build your Docker image and give it a tag:
 
-```
-docker build -t mern-example:latest .
+```bash
+docker build -t mkrn-example:latest .
 ```
 
 Install the Helm chart located in `helm/mern` on to your cluster:
 
-```
+```bash
 helm install helm/mern
 ```
 
 If using minikube, you will need to add port forwarding to be able to view your application:
 
-```
+```bash
 kubectl port-forward <pod_name> <external_port>:3000
 
 kubectl port-forward mern-deployment-789311257-36s62 32111:3000
@@ -124,7 +122,7 @@ If you want to update your application, you can build a new image with a new ver
 
 Then, roll out a new release with:
 
-```
+```bash
 helm upgrade <deployment_name> helm/mern
 helm upgrade limping-bee .
 ```
@@ -137,7 +135,7 @@ helm upgrade limping-bee .
 
 2. Log the local Docker client in to IBM Bluemix Container Registry
 
-```
+```bash
 bx cr login
 ```
 
@@ -145,7 +143,7 @@ bx cr login
 
 3. Retrieve the name of the namespace you are going to use to push your Docker images
 
-```
+```bash
 bx cr namespace-list
 ```
 
@@ -155,7 +153,7 @@ bx cr namespace-list
 
 > In the following steps, make sure to replace <namespace> with your namespace name
 
-```
+```bash
 docker build -t registry.ng.bluemix.net/<namespace>/mern-example:v1 .
 ```
 
@@ -169,7 +167,7 @@ docker push registry.ng.bluemix.net/<namespace>/mern-example:v1
 
 1. Create a Kubernetes cluster in Bluemix
 
-```
+```bash
 bx cs cluster-create <cluster-name>
 ```
 
@@ -178,13 +176,13 @@ bx cs cluster-create <cluster-name>
 2. Wait for you cluster to be deployed. This step can take awhile, you can check the status of your cluster by using:
 
 
-```
+```bash
 bx cs clusters
 ```
 
 3. Ensure that the cluster workers are ready:
 
-```
+```bash
 bx cs workers <cluster-name>
 ```
 
@@ -193,13 +191,13 @@ bx cs workers <cluster-name>
 1. Retrieve the cluster configuration
 
 
-```
+```bash
 bx cs cluster-config <cluster-name>
 ```
 
-The output will look like:
+Output:
 
-```
+```bash
 Downloading cluster config for mycluster-robert
 OK
 The configuration for mycluster-robert was downloaded successfully. Export environment variables to start using Kubernetes.
@@ -211,13 +209,13 @@ export KUBECONFIG=/home/rfdickerson/.bluemix/plugins/container-service/clusters/
 
 3. Confirm the configuration worked by retrieving the cluster nodes.
 
-```
+```bash
 kubectl get nodes
 ```
 
 4. Edit your `helm/mern/Values.yaml` with your namespace
 
-```
+```yaml
 replicaCount: 3
 revisionHistoryLimit: 1
 image:
@@ -239,13 +237,13 @@ services:
 
 5. Install the Helm tiller
 
-```
+```bash
 helm init
 ```
 
 6. Install the Helm chart
 
-```
+```bash
 helm install helm/mern
 ```
 
@@ -253,25 +251,17 @@ helm install helm/mern
 
 Find out your deployment name:
 
-```
+```bash
 helm ls
 ```
 
-```
+```bash
 NAME         	REVISION	UPDATED                 	STATUS  	CHART     	NAMESPACE
 elegant-puma 	5       	Wed Jun 28 12:01:58 2017	DEPLOYED	mern-0.0.1	default
 ```
 
 then to update the deployment, use:
 
-```
+```bash
 helm upgrade elegant-puma helm/mern
 ```
-
-## Dependencies
-
-  - [axios](https://github.com/mzabriskie/axios) - promise-based HTTP client
-  - [foreman](https://github.com/strongloop/node-foreman) - a Procfile-based application utility
-  - [mongoose](http://mongoosejs.com/) - mongodb object modelling
-  - [express](https://expressjs.com/) - minimalist Node.js framework
-  - [react](https://facebook.github.io/react/) - JS library for building user interfaces

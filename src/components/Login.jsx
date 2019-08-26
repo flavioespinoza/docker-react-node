@@ -25,9 +25,9 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: 'Thomas J. Watson',
-      twitter: 'blueguy',
-      imageURL: 'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg'
+      author: 'Flavio Espinoza',
+      twitter: 'flavioespinoza',
+      imageURL: 'https://i.imgur.com/Yd8qLyh.jpg'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);

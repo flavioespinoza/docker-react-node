@@ -1,4 +1,4 @@
-FROM node:6-alpine
+FROM node:10.16.3-alpine
 
 ADD . /usr/app/
 

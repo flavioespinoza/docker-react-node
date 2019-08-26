@@ -1,41 +1,20 @@
-/*
-  Licensed to the Apache Software Foundation (ASF) under one
-  or more contributor license agreements.  See the NOTICE file
-  distributed with this work for additional information
-  regarding copyright ownership.  The ASF licenses this file
-  to you under the Apache License, Version 2.0 (the
-  "License"); you may not use this file except in compliance
-  with the License.  You may obtain a copy of the License at
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const morgan = require('morgan');
+const pino = require('pino')();
 
-    http://www.apache.org/licenses/LICENSE-2.0
+const MongoStore = require('connect-mongo')(session);
 
-  Unless required by applicable law or agreed to in writing,
-  software distributed under the License is distributed on an
-  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  KIND, either express or implied.  See the License for the
-  specific language governing permissions and limitations
-  under the License.
- */
+const Comment = require('./model/comments');
 
-'use strict'
-
-var express = require('express');
-var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var morgan = require('morgan');
-var pino = require('pino')();
-
-var MongoStore = require('connect-mongo')(session);
-
-var Comment = require('./model/comments');
-
-var app = express();
-var router = express.Router();
+const app = express();
+const router = express.Router();
 
 pino.debug('Starting the MERN example');
 
-// user set variables
+// user set constiables
 const port = process.env.API_PORT || process.env.PORT || 3001;
 const mongoURL = process.env.MONGO_URL || 'localhost';
 const mongoUser = process.env.MONGO_USER || '';
@@ -59,7 +38,7 @@ mongoose.connect(mongoConnect)
     if (err) pino.error(err);
   });
 
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', (error) => {
   pino.error(error);
 });
@@ -68,7 +47,7 @@ db.on('error', (error) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var sess = {
+const sess = {
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   name: 'mern example',
   secret: 'keyboard cat',
@@ -80,7 +59,7 @@ var sess = {
 // production only middleware
 if (process.env.NODE_ENV == 'production') {
   pino.info('Using production mode');
-  var compression = require('compression');
+  const compression = require('compression');
   app.use(compression());
 
   app.use(express.static(staticDir));

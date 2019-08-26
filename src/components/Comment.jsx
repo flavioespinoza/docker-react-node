@@ -48,7 +48,7 @@ class Comment extends Component {
       <article className="media">
         <figure className="media-left">
           <p className="image is-64x64">
-            <img alt="Avatar" src={this.props.imageURL} />
+            <img alt="Avatar" src={'https://i.imgur.com/Yd8qLyh.jpg'} />
           </p>
         </figure>
         <div className="media-content">

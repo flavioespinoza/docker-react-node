@@ -1,35 +1,30 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const morgan = require('morgan');
-const pino = require('pino')();
+let express = require('express');
+let mongoose = require('mongoose');
+let bodyParser = require('body-parser');
+let session = require('express-session');
+let morgan = require('morgan');
+let pino = require('pino')();
 
-const MongoStore = require('connect-mongo')(session);
+let MongoStore = require('connect-mongo')(session);
 
-const Comment = require('./model/comments');
+let Comment = require('./model/comments');
 
-const app = express();
-const router = express.Router();
+let app = express();
+let router = express.Router();
 
 pino.debug('Starting the MERN example');
 
-// user set constiables
-const port = process.env.API_PORT || process.env.PORT || 3001;
-const mongoURL = process.env.MONGO_URL || 'localhost';
-const mongoUser = process.env.MONGO_USER || '';
-const mongoPass = process.env.MONGO_PASS || '';
-const mongoDBName = process.env.MONGO_DB_NAME || 'comments';
-const staticDir = process.env.STATIC_DIR || 'build';
+// user set letiables
+let port = process.env.API_PORT || process.env.PORT || 3001;
+let mongoURL = process.env.MONGO_URL || 'localhost';
+let mongoUser = process.env.MONGO_USER || '';
+let mongoPass = process.env.MONGO_PASSWORD || '';
+let mongoDBName = process.env.MONGO_DB_NAME || 'exemplar';
+let staticDir = process.env.STATIC_DIR || 'build';
 
 // connect to the MongoDB
-let mongoConnect = 'mongodb://localhost:27017'
-if (mongoURL !== '' && mongoUser !== '' && mongoPass != '') {
-  mongoConnect = `mongodb://${mongoUser}:${mongoPass}@${mongoURL}/${mongoDBName}`;
-} else if (mongoURL !== '') {
-  mongoConnect = `mongodb://${mongoURL}/${mongoDBName}`;
-}
-
+// let mongoConnect = `mongodb://${mongoUser}:${mongoPass}@${mongoURL}/${mongoDBName}`;
+const mongoConnect = 'mongodb://slammin_hottie:ReverseCowg1rl@ds249428.mlab.com:49428/exemplar'
 pino.info(`Connect to ${mongoConnect}`);
 
 mongoose.Promise = global.Promise;
@@ -38,7 +33,7 @@ mongoose.connect(mongoConnect)
     if (err) pino.error(err);
   });
 
-const db = mongoose.connection;
+let db = mongoose.connection;
 db.on('error', (error) => {
   pino.error(error);
 });
@@ -47,7 +42,7 @@ db.on('error', (error) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const sess = {
+let sess = {
   store: new MongoStore({ mongooseConnection: mongoose.connection }),
   name: 'mern example',
   secret: 'keyboard cat',
@@ -59,7 +54,7 @@ const sess = {
 // production only middleware
 if (process.env.NODE_ENV == 'production') {
   pino.info('Using production mode');
-  const compression = require('compression');
+  let compression = require('compression');
   app.use(compression());
 
   app.use(express.static(staticDir));
@@ -87,17 +82,17 @@ router.route('/comments')
   })
   .post(function (req, res) {
 
-    const text = req.body.text;
-    const author = req.session.author;
-    const twitter = req.session.twitter;
-    const imageURL = req.session.imageURL;
+    let text = req.body.text;
+    let author = req.session.author;
+    let twitter = req.session.twitter;
+    let imageURL = req.session.imageURL;
 
     if (!text || !author || !twitter || !imageURL) {
       res.json({ message: 'Not signed in' });
       return
     }
 
-    const comment = new Comment(
+    let comment = new Comment(
       {
         author: author,
         text: text,
@@ -134,9 +129,9 @@ router.post('/comments/logout', (req, res) => {
 });
 
 router.post('/comments/login', (req, res) => {
-  const author = req.body.author;
-  const twitter = req.body.twitter;
-  const imageURL = req.body.imageURL;
+  let author = req.body.author;
+  let twitter = req.body.twitter;
+  let imageURL = req.body.imageURL;
 
   pino.info(`Received sign in request from ${author}, ${twitter}, ${imageURL}`);
 

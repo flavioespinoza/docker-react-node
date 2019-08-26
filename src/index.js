@@ -30,7 +30,6 @@ ReactDOM.render(
       url='/api/comments'
       pollInterval={2000} 
     />
-    <Footer />
   </div>
   ,
   document.getElementById('root')

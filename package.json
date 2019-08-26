@@ -2,6 +2,15 @@
   "name": "docker-react-node",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "dev": "nodemon ./server/server.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start-dev": "nf --procfile Procfile-dev --port 3000 start",
+    "start-prod": "nf start"
+  },
   "dependencies": {
     "axios": "^0.16.1",
     "body-parser": "^1.17.1",
@@ -16,23 +25,14 @@
     "mongoose": "^4.9.8",
     "morgan": "^1.8.1",
     "nodemon": "^1.11.0",
+    "ololog": "^1.1.146",
     "pino": "^4.5.2",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "3.0.1"
   },
-  "devDependencies": {
-    "react-scripts": "0.9.5"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "start-dev": "nf --procfile Procfile-dev --port 3000 start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "start-prod": "nf start"
-  },
-  "proxy": "http://localhost:3100",
-  "description": "The MERN stack starter demonstrates a working application that uses a Create-React-App frontend, with a Node and Koa backend, and MongoDB. It shows how the client can make client HTTP requests and maintain persistent sessions.",
+  "proxy": "http://localhost:5000",
+  "description": "Dockerized MERN stack with Create-React-App frontend, Node Koa backend, and MongoDB",
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -55,5 +55,17 @@
   "bugs": {
     "url": "https://github.com/flavioespinoza/docker-react-node/issues"
   },
-  "homepage": "https://github.com/flavioespinoza/docker-react-node#readme"
+  "homepage": "https://github.com/flavioespinoza/docker-react-node#readme",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

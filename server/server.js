@@ -1,26 +1,26 @@
-let express = require('express');
-let mongoose = require('mongoose');
-let bodyParser = require('body-parser');
-let session = require('express-session');
-let morgan = require('morgan');
-let pino = require('pino')();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const morgan = require('morgan');
+const pino = require('pino')();
+const log = require('ololog')
+const MongoStore = require('connect-mongo')(session);
 
-let MongoStore = require('connect-mongo')(session);
-
-let Comment = require('./model/comments');
-
-let app = express();
-let router = express.Router();
+const Comment = require('./model/comments');
+const app = express();
+const router = express.Router();
 
 pino.debug('Starting the MERN example');
 
-// user set letiables
-let port = process.env.API_PORT || process.env.PORT || 3001;
+let port = 5000;
 let mongoURL = process.env.MONGO_URL || 'localhost';
 let mongoUser = process.env.MONGO_USER || '';
 let mongoPass = process.env.MONGO_PASSWORD || '';
 let mongoDBName = process.env.MONGO_DB_NAME || 'exemplar';
 let staticDir = process.env.STATIC_DIR || 'build';
+
+
 
 // connect to the MongoDB
 // let mongoConnect = `mongodb://${mongoUser}:${mongoPass}@${mongoURL}/${mongoDBName}`;
@@ -160,7 +160,8 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(port, function () {
-  pino.info(`api running on port ${port}`);
+	// pino.info(`api running on port ${port}`);
+	log.lightMagenta(`Server running on port ${port}`)
 });
 
 

@@ -13,7 +13,7 @@ The MERN stack starter demonstrates a working application that uses a Create-Rea
 
 ## Getting Started
 
-To run a development environment, you can use the `start-dev` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 3100. These development servers will automatically reload if changes are made to the source.
+To run a development environment, you can use the `start-dev` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 5000. These development servers will automatically reload if changes are made to the source.
 
 1. Install dependencies:
 
@@ -74,7 +74,7 @@ docker build -f Dockerfile-tools -t mern-example:latest .
 And running the image:
 
 ```bash
-docker run -v ${PWD}:/usr/app -p 3000:3100 -t mern-example:latest
+docker run -v ${PWD}:/usr/app -p 3000:5000 -t mern-example:latest
 ```
 
 ## Kubernetes

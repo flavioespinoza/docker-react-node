@@ -1,19 +1,15 @@
 version: '3'
 services:
-  web:
-    build: .
+  exemplar_app:
+    build:  .
+    # image:  flavioespinoza/docker-react-node:latest
+    container_name: exemplar_app
     command: yarn start-dev
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
     ports:
-      - "3000:3000"
-    links:
-      - mongo
+      - "8080:8080"
     environment:
-      MONGO_URL: "mongo"
-      MONGO_DB_NAME: "comments"
-      PORT: "8000"
+      PORT: "5000"
       NODE_ENV: "development"
-  mongo:
-    image: mongo

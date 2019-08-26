@@ -1,1 +1,2 @@
-web: NODE_ENV=production node server/server.js
+web: react-scripts start
+api: NODE_ENV=production nodemon server/index.js

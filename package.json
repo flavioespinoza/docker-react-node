@@ -31,5 +31,29 @@
     "eject": "react-scripts eject",
     "start-prod": "nf start"
   },
-  "proxy": "http://localhost:3100"
+  "proxy": "http://localhost:3100",
+  "description": "The MERN stack starter demonstrates a working application that uses a Create-React-App frontend, with a Node and Koa backend, and MongoDB. It shows how the client can make client HTTP requests and maintain persistent sessions.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flavioespinoza/docker-react-node.git"
+  },
+  "keywords": [
+    "docker",
+    "react",
+    "node",
+    "koa",
+    "create",
+    "react",
+    "app"
+  ],
+  "author": "Flavio Espinoza <flavio.espinoza@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flavioespinoza/docker-react-node/issues"
+  },
+  "homepage": "https://github.com/flavioespinoza/docker-react-node#readme"
 }

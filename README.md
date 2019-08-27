@@ -1,6 +1,6 @@
 # docker-react-node
 
-This is the code-base for a [docker-react-node](https://cloud.docker.com/u/flavioespinoza/repository/docker/flavioespinoza/docker-react-node) docker-image based on the new KRN Stack (Koa React Node).
+code-base for the [docker-react-node](https://cloud.docker.com/u/flavioespinoza/repository/docker/flavioespinoza/docker-react-node) Docker image 
 
 ## Local Dev Environment (Required)
 You must have these tools installed on your local MacOS or Linux development environment.
@@ -16,7 +16,6 @@ You must have these tools installed on your local MacOS or Linux development env
 Install dependencies with `yarn` then use `docker-compose` to run on your local development environment.
 
 **IMPORTANT**: For Linux based systems I strongly recommend using the Ubuntu 18.04 Linux distribution for your local development environment.
-
 
 1. Clone github repo:
 

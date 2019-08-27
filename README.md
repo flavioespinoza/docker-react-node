@@ -1,23 +1,35 @@
 # docker-react-node
 
-The KRN (Koa React Node) stack starter demonstrates a working application that uses a Create-React-App frontend with a Node-Koa backend.
+This is the code-base for a [docker-react-node](https://cloud.docker.com/u/flavioespinoza/repository/docker/flavioespinoza/docker-react-node) docker-image based on the new KRN Stack (Koa React Node).
 
-## Dependencies (Required)
+## Local Dev Environment (Required)
+You must have these tools installed on your local MacOS or Linux development environment.
 
-You must have these tools installed to run this app:
-
-  - [axios](https://github.com/mzabriskie/axios) - promise-based HTTP client
-  - [foreman](https://github.com/strongloop/node-foreman) - a Procfile-based application utility
-  - [node](https://nodejs.org/) - Backend JavaScript Runtime
-  - [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) - Package manager for NPM modules
-  - [koa](https://koajs.com/) - minimalist Node.js framework
-  - [create-react-app](create-react-app) - JS library for building React user interfaces
+  - [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) - JS package manager that replaces the npm client for use with the npm registry
+  - [node](https://nodejs.org/) - JS run-time environment for backend applications
+  - [docker - Linux](https://docs.docker.com/install/#server) - Container platform used to build, run and share any application
+  - [docker-compose - Linux](https://docs.docker.com/compose/install/#install-compose) - Tool for defining and running multi-container docker applications
+  - [docker - MacOS](https://docs.docker.com/docker-for-mac/install/) - Includes **docker-compose**
 
 ## Getting Started
 
-To run a development environment, you can use the `start-dev` command. This will start up a development web server on port 3000, and a nodemon-watched API server on port 5000. These development servers will automatically reload if changes are made to the source.
+Install dependencies with `yarn` then use `docker-compose` to run on your local development environment.
 
-1. Install dependencies:
+**IMPORTANT**: For Linux based systems I strongly recommend using the Ubuntu 18.04 Linux distribution for your local development environment.
+
+
+1. Clone github repo:
+
+	```bash
+	git clone https://github.com/flavioespinoza/docker-react-node.git
+	```
+1. CD into the cloned directory:
+
+	```bash
+	cd docker-react-node
+	```
+
+1. Install dependencies with yarn:
 
 	```bash
 	yarn
@@ -26,91 +38,9 @@ To run a development environment, you can use the `start-dev` command. This will
 1. Start the development environment:
 
 	```bash
-	yarn start-dev
+	docker-compose up
 	```
 
-## Docker Compose
+This will start up the frontend-server on http://localhost:8080 and the backend-server on port 5000.
 
-Run with docker-compose:
-
-```bash
-docker-compose up
-```
-
-Navigate to: http://localhost:8080
-
-Changes to any file will automatically be compiled and reflected in the app.
-
-Stop with docker-compose:
-
-```bash
-docker-compose down
-```
-
-
-## Docker Image
-Build Docker Image:
-
-```bash
-yarn docker:build
-```
-Push Docker Image to Docker Hub:
-
-```bash
-yarn docker:push
-```
-
-Build, then push with one command:
-
-```bash
-yarn docker:all
-```
-
-## Configuration (Required)
-
-You must customize the environment to use different values for the Node Environment Variables. To do this, create a new file called `.env` in your root directory of the project, with the following environment variables:
-
-```bash
-# ------------------------------------------------------------------------------------------
-# Node Backend & React Frontend
-# ------------------------------------------------------------------------------------------
-NODE_ENV="production"
-
-HOST=5000
-
-AUTH_ENV=prod
-
-NODE_PATH=./src
-
-PRISMA_MANAGEMENT_API_SECRET="your_api_key"
-
-SENGRID_KEY="your_api_key"
-
-JOTFORM_API_KEY="your_api_key"
-
-# OpenID Connect Credentials
-CLIENT_ID="your_client_id"
-CLIENT_SECRET="your_client_secret"
-
-URI_REDIRECT=http://localhost:8080/auth/openIdClient/redirect
-
-URI_HOST=https://ra-authnet.resilient-networks.com/
-URI_HOST_PD=https://exemplar.pd.authnet.webshield.io
-​
-URI_OPENID=https://ra-authnet.resilient-networks.com/openId/
-URI_OPENID_PD=https://exemplar.pd.authnet.webshield.io:844/
-​
-URI_AUTH=https://ra-authnet.resilient-networks.com/openId/authenticate
-URI_AUTH_PD=https://ra-authnet.resilient-networks.com/openId/authenticate
-​
-URI_TOKEN=https://ra-authnet.resilient-networks.com/openId/token
-URI_TOKEN_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_token
-
-URI_USERINFO=https://ra-authnet.resilient-networks.com/openId/userinfo
-URI_USERINFO_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_userInfo
-
-URI_LOGOUT=https://ra-authnet.resilient-networks.com/openId/logout
-URI_LOGOUT_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_logout
-​
-SCOPE="openid admin profile email"
-```
+**IMPORTANT**: The frontend-server and backend-server are continually watched and will automatically reload if changes are made to the source.

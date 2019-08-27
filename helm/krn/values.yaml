@@ -3,15 +3,12 @@
 replicaCount: 3
 revisionHistoryLimit: 1
 image:
-  repository: registry.ng.bluemix.net/robert_namespace/mern-example
+  repository: https://cloud.docker.com/u/flavioespinoza/repository/docker/flavioespinoza/docker-react-node
   tag: v1
   pullPolicy: IfNotPresent
 service:
   name: Node
   type: NodePort
-  containerPort: 3000
+  containerPort: 8080
   env: production
-services:
-  mongo:
-     url: mongo
-     name: comments
+  

@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "{{  .Chart.Name }}-deployment"
+  name: "{{ .Chart.Name }}-deployment"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
@@ -10,10 +10,10 @@ spec:
   template:
     metadata:
       labels:
-        app: "{{  .Chart.Name }}-selector"
+        app: "{{ .Chart.Name }}-selector"
     spec:
      containers:
-      - name: {{  .Chart.Name  }}
+      - name: {{ .Chart.Name  }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         livenessProbe:
@@ -23,10 +23,6 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
         env:
-          - name: MONGO_URL
-            value: {{ .Values.services.mongo.url }}
-          - name: MONGO_DB_NAME
-            value: {{ .Values.services.mongo.name }}
           - name: NODE_ENV
             value: {{ .Values.service.env }}
           - name: PORT

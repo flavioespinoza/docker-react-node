@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{  .Chart.Name }}"
+  name: "{{ .Chart.Name }}"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
@@ -9,4 +9,4 @@ spec:
   ports:
   - port: {{ .Values.service.containerPort }}
   selector:
-    app: "{{  .Chart.Name }}-selector"
+    app: "{{ .Chart.Name }}-selector"

@@ -1,9 +1,8 @@
 version: '3'
 services:
-  exemplar_app:
-    build:  .
-    # image:  flavioespinoza/docker-react-node:latest
-    container_name: exemplar_app
+  exemplar_dev:
+    image: flavioespinoza/docker-react-node:latest
+    container_name: exemplar_dev
     command: yarn start-dev
     volumes:
       - .:/usr/app/

@@ -1,15 +1,17 @@
 # docker-react-node
 
-The KRN (Koa React Node) stack starter demonstrates a working application that uses a Create-React-App frontend, with a Node and Koa backend.
+The KRN (Koa React Node) stack starter demonstrates a working application that uses a Create-React-App frontend with a Node-Koa backend.
 
-## Dependencies
+## Dependencies (Required)
+
+You must have these tools installed to run this app:
 
   - [axios](https://github.com/mzabriskie/axios) - promise-based HTTP client
   - [foreman](https://github.com/strongloop/node-foreman) - a Procfile-based application utility
-  - [Node](https://nodejs.org/) - Backend JavaScript Runtime
+  - [node](https://nodejs.org/) - Backend JavaScript Runtime
+  - [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) - Package manager for NPM modules
   - [koa](https://koajs.com/) - minimalist Node.js framework
-  - [react](https://facebook.github.io/react/) - JS library for building user interfaces
-
+  - [create-react-app](create-react-app) - JS library for building React user interfaces
 
 ## Getting Started
 
@@ -29,24 +31,86 @@ To run a development environment, you can use the `start-dev` command. This will
 
 ## Docker Compose
 
-Build images:
-```bash
-docker-compose build
-```
+Run with docker-compose:
 
-Run:
 ```bash
 docker-compose up
 ```
 
-## Configuration (Optional)
+Navigate to: http://localhost:8080
 
-By default, the server will expect to connect to a MongoDB instance running on localhost:27017. However, you can customize the environment to use different values for the MongoDB host. To do that, you can create a `.env` file for specifying credential information for MongoDB. 
+Changes to any file will automatically be compiled and reflected in the app.
 
-Create a new file called `.env`, with the following YAML:
+Stop with docker-compose:
 
 ```bash
-MONGO_URL=mongodb://localhost:27017/comments
-MONGO_USER=username
-MONGO_PASSWORD=password
+docker-compose down
+```
+
+
+## Docker Image
+Build Docker Image:
+
+```bash
+yarn docker:build
+```
+Push Docker Image to Docker Hub:
+
+```bash
+yarn docker:push
+```
+
+Build, then push with one command:
+
+```bash
+yarn docker:all
+```
+
+## Configuration (Required)
+
+You must customize the environment to use different values for the Node Environment Variables. To do this, create a new file called `.env` in your root directory of the project, with the following environment variables:
+
+```bash
+# ------------------------------------------------------------------------------------------
+# Node Backend & React Frontend
+# ------------------------------------------------------------------------------------------
+NODE_ENV="production"
+
+HOST=5000
+
+AUTH_ENV=prod
+
+NODE_PATH=./src
+
+PRISMA_MANAGEMENT_API_SECRET="your_api_key"
+
+SENGRID_KEY="your_api_key"
+
+JOTFORM_API_KEY="your_api_key"
+
+# OpenID Connect Credentials
+CLIENT_ID="your_client_id"
+CLIENT_SECRET="your_client_secret"
+
+URI_REDIRECT=http://localhost:8080/auth/openIdClient/redirect
+
+URI_HOST=https://ra-authnet.resilient-networks.com/
+URI_HOST_PD=https://exemplar.pd.authnet.webshield.io
+​
+URI_OPENID=https://ra-authnet.resilient-networks.com/openId/
+URI_OPENID_PD=https://exemplar.pd.authnet.webshield.io:844/
+​
+URI_AUTH=https://ra-authnet.resilient-networks.com/openId/authenticate
+URI_AUTH_PD=https://ra-authnet.resilient-networks.com/openId/authenticate
+​
+URI_TOKEN=https://ra-authnet.resilient-networks.com/openId/token
+URI_TOKEN_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_token
+
+URI_USERINFO=https://ra-authnet.resilient-networks.com/openId/userinfo
+URI_USERINFO_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_userInfo
+
+URI_LOGOUT=https://ra-authnet.resilient-networks.com/openId/logout
+URI_LOGOUT_PD=https://exemplar.pd.authnet.webshield.io:844/resilientAccess_logout
+​
+SCOPE="openid admin profile email"
 ```

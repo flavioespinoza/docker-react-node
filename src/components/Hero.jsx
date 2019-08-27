@@ -17,7 +17,8 @@ class Hero extends Component {
 
   loginClick() {
 		const qs = {
-			email: 'flavio.espinoza@gmail.com'
+			// email: 'flavio.espinoza@gmail.com',
+			email: 'balls@gmail.com',
 		}
 		this._openid(qs)
 	}

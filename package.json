@@ -3,13 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=8080 react-scripts start",
-    "dev": "nodemon ./server/index.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start-dev": "nf --procfile Procfile-dev --port 8080 start",
-    "start-prod": "nf start"
+    "start-dev": "nf --procfile Procfile --port 8080 start",
+    "start-prod": "nf start",
+		"poststart": "yarn run prod",
+		"docker:build": "yarn run build && docker build -f Dockerfile.release --tag=flavioespinoza/docker-react-node:latest .",
+		"docker:push": "docker push flavioespinoza/docker-react-node:latest",
+		"docker:all": "yarn docker:build && yarn docker:push"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -39,7 +42,8 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "typescript": "^3.5.3"
   },
   "proxy": "http://localhost:5000",
   "description": "Dockerized MERN stack with Create-React-App frontend, Node Koa backend, and MongoDB",

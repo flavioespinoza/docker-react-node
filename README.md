@@ -3,10 +3,10 @@
 code-base for the [docker-react-node](https://cloud.docker.com/u/flavioespinoza/repository/docker/flavioespinoza/docker-react-node) Docker image 
 
 ## Local Dev Environment (Required)
-You must have these tools installed on your local MacOS or Linux development environment.
+You must have these tools installed on your MacOS or Linux development environment.
 
   - [yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) - JS package manager that replaces the npm client for use with the npm registry
-  - [node](https://nodejs.org/) - JS run-time environment for backend applications
+  - [node](https://nodejs.org/en/download/) - JS run-time environment for backend applications
   - [docker - Linux](https://docs.docker.com/install/#server) - Container platform used to build, run and share any application
   - [docker-compose - Linux](https://docs.docker.com/compose/install/#install-compose) - Tool for defining and running multi-container docker applications
   - [docker - MacOS](https://docs.docker.com/docker-for-mac/install/) - Includes **docker-compose**

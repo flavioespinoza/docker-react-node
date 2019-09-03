@@ -26,7 +26,8 @@ steps:
     commands:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - make test
-  - name: notify-in-slack
+
+  - name: notify-in-slack-tests
     image: plugins/slack
     pull: default
     when:
@@ -90,6 +91,7 @@ steps:
       - echo "machine github.com login flavioespinoza password $GITHUB_ACCESS_TOKEN" >> $HOME/.netrc
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - make build-drone
+
   - name: build-push-docker  
     image: plugins/docker  # http://plugins.drone.io/drone-plugins/drone-docker/
     settings:
@@ -101,7 +103,8 @@ steps:
       auto_tag: true
       purge: true
       dockerfile: Dockerfile.release
-  - name: notify-in-slack
+
+  - name: notify-in-slack-build
     image: plugins/slack
     pull: default
     when:

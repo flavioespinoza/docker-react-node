@@ -13,12 +13,16 @@ const bodyParser = require("koa-bodyparser");
 const request = require("request");
 const log = require("ololog");
 
+const __break_me = require('break-me')
+
 const PORT = process.env.HOST || 5000;
 const jotform_api_key = process.env.JOTFORM_API_KEY;
 // const jotform_api_key = "e6271df2300c9d7c4e5d3f6aba33ec1c";
 
 const app = new Koa();
 const loginRoute = new Router();
+
+log.lightYellow('__break_me', __break_me)
 
 const _req_claim = async options => {
   return new Promise(async resolve => {
@@ -66,11 +70,14 @@ loginRoute.post("/api/openid-login", async (ctx, next) => {
   // 	}
   // });
 
-  // log.magenta(answers)
+	// log.magenta(answers)
+	
 
   ctx.body = {
     success: true,
-    email: email,
+		email: email,
+		jotform_api_key: jotform_api_key,
+		break_me: __break_me.balls(),
     claim: {
     	submission_id: 'claim.body.content.id',
     	answers: 'answers',

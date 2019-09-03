@@ -16,7 +16,7 @@
     "docker:build": "docker build -t flavioespinoza/docker-react-node -f Dockerfile.release .",
     "docker:build-latest": "docker build -f Dockerfile.release --tag=flavioespinoza/docker-react-node:latest .",
     "docker:push": "docker push flavioespinoza/docker-react-node:latest",
-    "docker:release": "yarn docker:prep && yarn docker:build-latest && yarn docker:push"
+    "docker:release": "yarn run docker:prep && yarn run docker:build-latest && yarn docker:push"
   },
   "dependencies": {
     "axios": "^0.19.0",

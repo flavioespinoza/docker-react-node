@@ -12,3 +12,4 @@ services:
     environment:
       PORT: "5000"
       NODE_ENV: "development"
+      DOMAIN_ENV: "not_pd"

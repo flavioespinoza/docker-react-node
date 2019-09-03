@@ -5,8 +5,11 @@ name: test
 trigger:
   ref:
     - refs/heads/master  # All pushes to master
-    - refs/heads/yarn    # All pushes to yarn
+
+    - refs/heads/drone    # All pushes to yarn
+
     - refs/pull/*/*      # All pull requests regardless of branch
+
     - refs/tags/*        # Tags for releasing/etc
  
 platform:
@@ -69,6 +72,8 @@ trigger:
   ref: 
     - refs/heads/master # Build the latest image of master on all pushes (tagged as latest)
 
+    - refs/heads/drone # Build the latest image of master on all pushes (tagged as latest)
+
     - refs/tags/*       # Build when we tag for releases
 
 platform:
@@ -80,15 +85,15 @@ workspace:
 
 steps:
   - name: build
-    image: node:10.15
+    image: node:10.16.3
     commands:
-      - echo "machine github.com login webshield password $GITHUB_ACCESS_TOKEN" >> $HOME/.netrc
+      - echo "machine github.com login flavioespinoza password $GITHUB_ACCESS_TOKEN" >> $HOME/.netrc
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - make build-drone
   - name: build-push-docker  
     image: plugins/docker  # http://plugins.drone.io/drone-plugins/drone-docker/
     settings:
-      repo: webshielddev/${DRONE_REPO_NAME}
+      repo: flavioespinoza/${DRONE_REPO_NAME}
       username:
         from_secret: DOCKER_USERNAME
       password:

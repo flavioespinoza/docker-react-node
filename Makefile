@@ -9,7 +9,9 @@ build:
 
 build-docker:
 	@echo "***** Docker Build & Push Image: " ${IMG} "*****"
-	yarn run docker:all
+	
+	yarn run docker:prep
+	yarn run docker:build
 
 build-drone:
 	yarn run docker:prep

@@ -1,24 +1,25 @@
 # Base image
 FROM node:10.16.3-alpine
 
-COPY ./ /usr/app/
+COPY ./ 	/wsdev/authnet-app/
 
-RUN apk update
-
-COPY package.json /tmp/package.json
-COPY yarn.lock /tmp/yarn.lock
+# COPY package.json /tmp/package.json
+# COPY yarn.lock /tmp/yarn.lock
 
 # Install dependencies display warnings and errors only
-RUN cd /tmp && yarn
+# RUN cd /tmp && yarn install --silent
 
-RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
+# RUN mkdir -p /wsdev/authnet-app && cp -a /tmp/node_modules /wsdev/authnet-app
 
-WORKDIR /usr/app
+WORKDIR /wsdev/authnet-app
 
-# Build optimized React sources
-RUN yarn run build
+# Required for linux sass binary
+RUN cd /wsdev/authnet-app && yarn run prebuild
+RUN cd /wsdev/authnet-app && yarn run build
 
-ENV NODE_ENV="production"
+# Node ENV variables
+ENV NODE_ENV=production
+ENV DOMAIN_ENV=pd
 
 # Expose the port so host can have access
 EXPOSE 80

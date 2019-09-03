@@ -1,0 +1,25 @@
+FROM niceoneallround/nodebase
+
+# Lets add the necessary files to the image
+ADD ./package.json          /wsdev/raian/package.json
+ADD ./runService.js         /wsdev/raian/runService.js
+ADD ./lib                   /wsdev/raian/lib
+ADD ./files                 /wsdev/raian/files
+
+# Add the node modules as quicker build - could do npm update but would need git
+ADD ./node_modules          /wsdev/raian/node_modules
+
+WORKDIR /wsdev/raian/
+
+# LISTEN Properties
+ENV LISTEN_PORT 80
+ENV PORT_INSIDE_DOCKER 80
+
+# The baked in version
+ENV VERSION_NUMBER 1.2.0
+
+# expose the port so host can have access
+EXPOSE 80
+
+# run this after the container has been instantiated
+CMD ["forever", "runService.js"]

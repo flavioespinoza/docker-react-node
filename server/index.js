@@ -13,7 +13,7 @@ const bodyParser = require("koa-bodyparser");
 const request = require("request");
 const log = require("ololog");
 
-const PORT = process.event.HOST || 5000;
+const PORT = process.env.HOST || 5000;
 
 const app = new Koa();
 const loginRoute = new Router();

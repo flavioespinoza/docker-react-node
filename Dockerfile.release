@@ -1,6 +1,7 @@
+# Base image
 FROM node:10.16.3-alpine
 
-ADD . /usr/app/
+COPY ./ /usr/app/
 
 RUN apk update
 
@@ -8,7 +9,7 @@ COPY package.json /tmp/package.json
 COPY yarn.lock /tmp/yarn.lock
 
 # Install dependencies display warnings and errors only
-RUN cd /tmp && yarn --quiet
+RUN cd /tmp && yarn
 
 RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
 
@@ -18,5 +19,8 @@ WORKDIR /usr/app
 RUN yarn run build
 
 ENV NODE_ENV="production"
+
+# Expose the port so host can have access
+EXPOSE 80
 
 CMD [ "yarn", "start-prod" ]

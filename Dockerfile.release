@@ -22,6 +22,6 @@ ENV NODE_ENV=production
 ENV DOMAIN_ENV=pd
 
 # Expose the port so host can have access
-EXPOSE 80
+EXPOSE 8080
 
 CMD [ "yarn", "start-prod" ]

@@ -48,7 +48,7 @@ class Hero extends Component {
       <section className="hero is-info docker-react-node__app">
         <div className="hero-body">
           <div className="container">
-            <h1 className="title">Dockerized React Node App</h1>
+            <h1 className="title">Dockerized React Node App HERO BALLS</h1>
             <button onClick={this.loginClick}>OpenID Login Hello</button>
 						<h4>EMAIL: {this.state.email}</h4>
 						<h4>SUCCESS: {this.state.success}</h4>

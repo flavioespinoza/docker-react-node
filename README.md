@@ -43,3 +43,7 @@ Install dependencies with `yarn` then use `docker-compose` to run on your local 
 This will start up the frontend-server on http://localhost:8080 and the backend-server on port 5000.
 
 **IMPORTANT**: The frontend-server and backend-server are continually watched and will automatically reload if changes are made to the source.
+
+
+### sync
+- balls

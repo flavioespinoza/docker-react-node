@@ -23,6 +23,7 @@
     "body-parser": "^1.17.1",
     "bulma": "^0.7.5",
     "dotenv": "^8.1.0",
+    "embedme": "^1.21.0",
     "esm": "^3.2.25",
     "foreman": "^3.0.1",
     "jsonwebtoken": "^8.5.1",

@@ -8,8 +8,6 @@ trigger:
 
     - refs/heads/drone # All pushes to yarn
 
-    - refs/heads/balls # All pushes to yarn
-
     - refs/pull/*/* # All pull requests regardless of branch
 
     - refs/tags/* # Tags for releasing/etc
@@ -32,5 +30,5 @@ steps:
       - eval $(~/.linuxbrew/bin/brew shellenv)
       - brew install hub
       - hub --help
-      - bash sync-examples.sh
+      - bash scripts/sync.sh
 

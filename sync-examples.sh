@@ -1,34 +1,64 @@
 
-timestamp=$(date +%s)
 
-rm -rf tempest--*
 
-git clone https://github.com/flavioespinoza/sync-docs.git tempest--${timestamp}
+if [ -z "$(git status --porcelain ./json-examples)" ]; then 
+  echo "Working directory clean"
+else 
+  # construct branch_name
+  timestamp=$(date +%s)
 
-cd tempest--${timestamp}
+  branch_prefix=sync-examples
 
-git checkout -b tempest--${timestamp}
+  branch_name="${branch_prefix}--${timestamp}"
 
-cd ..
+  # directory in the project's root that contain the files you want to add to the remote_repo
+  root_source_dir=json-examples
 
-cp -r json-examples tempest--${timestamp}
+  # define a temp_source_dir called branch_name
+  temp_source_dir=${branch_name}
 
-cd tempest--${timestamp}
+  # define the remote_repo you will copy files into
+  remote_repo=https://github.com/flavioespinoza/sync-docs.git
 
-git add .
+  # remove any existing temp_source_dir that starts with the branch_prefix
+  rm -rf ${branch_prefix}*
 
-git commit 'Sync-Docs - Copy Examples'
+  # clone the destination_repo into the project's root directory named temp_source_dir
+  git clone ${remote_repo} ${temp_source_dir}
 
-git push -u origin tempest--${timestamp}
+  # cd into the temp_source_dir
+  cd ${temp_source_dir}
 
-hub pull-request -m "Sync-Docs: tempest--${timestamp}"
+  # checkout a new branch called branch_name
+  git checkout -b ${branch_name}
 
-cd ..
+  # cd back into the project root directory
+  cd ..
 
-rm -rf tempest--${timestamp}
+  # copy all files in the root_source_dir to the temp_source_dir
+  cp -r ${root_source_dir} ${temp_source_dir}
 
-# if [ -z "$(git status --porcelain)" ]; then 
-#   # Working directory clean
-# else 
-#   # Uncommitted changes
-# fi
+  # cd into temp_source_dir
+  cd ${temp_source_dir}
+
+  # add changes to staging
+  git add .
+
+  # commit changes with a message 
+  git commit -m "${branch_name} to ${remote_repo}"
+
+  # push files to track on remote_repo branch_name
+  git push -u origin ${branch_name}
+
+  # create a pull-request on remote_repo
+  hub pull-request -h ${branch_name} -m "balls"
+
+  # cd into the project's root directory
+  cd ..
+
+  # remove the temp_source_dir
+  rm -rf ${temp_source_dir}
+
+  # log success
+  echo "Disco! :)"
+fi

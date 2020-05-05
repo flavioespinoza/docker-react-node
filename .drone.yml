@@ -28,7 +28,7 @@ steps:
     commands:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - curl -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-arm64-2.14.2.tgz | tar zx
-      - sudo install -t /usr/local/bin hub
+      - install -t /usr/local/bin hub
       - hub --version
 
   - name: notify-in-slack-tests

@@ -5,11 +5,15 @@ rm -rf tempest--*
 
 git clone https://github.com/flavioespinoza/sync-docs.git tempest--${timestamp}
 
-cp helm tempest--${timestamp}
-
 cd tempest--${timestamp}
 
 git checkout -b tempest--${timestamp}
+
+cd ..
+
+cp -r json-examples tempest--${timestamp}
+
+cd tempest--${timestamp}
 
 git add .
 

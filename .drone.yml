@@ -17,7 +17,7 @@ platform:
   arch: amd64
 
 workspace:
-  base: /
+  base: /node
 
 steps:
   - name: install-brew-hub then do stuff
@@ -30,5 +30,5 @@ steps:
       - eval $(~/.linuxbrew/bin/brew shellenv)
       - brew install hub
       - hub --help
-      - bash sync.sh
+      - ls -la
 

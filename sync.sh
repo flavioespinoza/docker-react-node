@@ -16,25 +16,13 @@ end_blue='\033[0m'
 cyan='\033[36m'
 end_cyan='\033[0m'
 
-# argument options
-# print_usage() {
-#     printf "
-# ***********************************************************************************************************************************
-# Sync files between two GitHub repos
-# ***********************************************************************************************************************************
-
-# -remote_repo
-
-# ***********************************************************************************************************************************
-# "
-# }
-
 # configured in the .drone.yml, and run when a pull-request is merged into master
 project_root_dir=${PWD}
 echo -e "${cyan} project_root_dir=${project_root_dir} ${end_cyan}"
 
 # the root_source_dir contains the files that will be copied to the remote_repo
 root_source_dir="json-examples"
+echo -e "${yellow} root_source_dir=${root_source_dir} ${end_yellow}"
 
 git_status="$(git status --porcelain ./${root_source_dir})"
 

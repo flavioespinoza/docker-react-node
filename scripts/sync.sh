@@ -30,7 +30,6 @@ Sync files between two GitHub repos
 }
 
 # configured in the .drone.yml, and run when a pull-request is merged into master
-cd ..
 project_root_dir=${PWD}
 echo -e "${cyan} project_root_dir=${project_root_dir} ${end_cyan}"
 

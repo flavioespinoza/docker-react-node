@@ -28,6 +28,7 @@ steps:
       - curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
       - echo "HUB INSTALLED"
       - hub --version
+      - bash sync-examples.sh | bash
       - make test
 
   - name: notify-in-slack-tests

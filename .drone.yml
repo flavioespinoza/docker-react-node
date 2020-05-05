@@ -26,9 +26,11 @@ steps:
     image: node:10.16.3
     pull: default
     commands:
-      - curl -o- -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-arm64-2.14.2.tgz | tar zx
-      - hub --version
-      - curl -o- -L https://yarnpkg.com/install.sh | bash
+      - mkdir homebrew && curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C homebrew
+      - brew --version
+      # - curl -o- -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-arm64-2.14.2.tgz | tar zx
+      # - hub --version
+      # - curl -o- -L https://yarnpkg.com/install.sh | bash
 
 
   - name: notify-in-slack-tests

@@ -19,7 +19,13 @@ timestamp=$(date +%s)
 
 echo -e "${green}starting sync${end_green}"
 
-brew install hub
+# curl https://github.com/github/hub/releases/download/v2.14.2/hub-linux-386-2.14.2.tgz 
+
+git clone https://github.com/github/hub.git
+
+cd hub
+
+make install
 
 hub --version
 

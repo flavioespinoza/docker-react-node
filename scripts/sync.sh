@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# color logs
 green='\033[32m'
 end_green='\033[0m'
 

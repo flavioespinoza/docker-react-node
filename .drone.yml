@@ -30,5 +30,5 @@ steps:
       - eval $(~/.linuxbrew/bin/brew shellenv)
       - brew install hub
       - hub --help
-      - bash sync.sh
+      - bash scripts/sync.sh
 

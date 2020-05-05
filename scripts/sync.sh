@@ -16,6 +16,7 @@ cyan='\033[36m'
 end_cyan='\033[0m'
 
 # configured in the .drone.yml, and run when a pull-request is merged into master
+cd ..
 project_root_dir=${PWD}
 echo -e "${cyan} project_root_dir=${project_root_dir} ${end_cyan}"
 
@@ -37,7 +38,7 @@ else
   timestamp=$(date +%s)
 
   # construct the branch_name
-  branch_prefix="sync-examples"
+  branch_prefix="sync"
   branch_name="${branch_prefix}--${timestamp}"
 
   # define the temp_source_dir which will contain the files that will be copied to the remote_repo
@@ -60,6 +61,7 @@ else
   cp -r $root_source_dir $temp_source_dir
 
   cp "${root_source_dir}/two.json" "${temp_source_dir}/json-examples/record-${timestamp}.txt"
+  
   # cd into temp_source_dir
   echo -e "${cyan} cd into temp_source_dir ${end_cyan}"
   cd $temp_source_dir
@@ -73,7 +75,7 @@ else
   # add changes to staging
   git add .
 
-  echo -e "${cyan} -- git status 2 -- ${end_cyan}"
+  echo -e "${yellow} -- git status 2 -- ${end_yellow}"
   git status
 
   # commit changes to branch_name with commit_message
@@ -92,5 +94,5 @@ else
   rm -rf ${temp_source_dir}
 
   # log success
-  echo "Disco! ${commit_message} and a pull-request has been created! :)"
+  echo "Sucess! ${commit_message} and a pull-request has been created! :)"
 fi

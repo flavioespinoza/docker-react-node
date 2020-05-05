@@ -1,3 +1,6 @@
+
+timestamp=$(date +%s)
+
 cd ..
 
 rm -rf tempest--*

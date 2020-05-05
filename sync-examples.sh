@@ -5,7 +5,7 @@ rm -rf tempest--*
 
 git clone https://github.com/flavioespinoza/sync-docs.git tempest--${timestamp}
 
-cp docker-react-node/helm tempest--${timestamp}
+cp helm tempest--${timestamp}
 
 cd tempest--${timestamp}
 

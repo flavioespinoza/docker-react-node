@@ -48,7 +48,7 @@ else
   remote_repo="https://github.com/flavioespinoza/sync-docs.git"
 
   # define the commit_message
-  commit_message="${branch_name} changes__balls"
+  commit_message=${branch_name}
 
   # remove any existing temp_source_dir whos name starts with the branch_prefix
   rm -rf ${branch_prefix}*
@@ -77,13 +77,13 @@ else
   git status
 
   # commit changes to branch_name with commit_message
-  git commit --message=$commit_message
+  git commit -m "${commit_message}."
 
   # push branch_name upstream to remote_repo
   git push -u origin $branch_name
 
   # create a pull-request on remote_repo
-  hub pull-request -h $branch_name --message=$commit_message
+  hub pull-request  -m "${commit_message}." -h flavioespinoza:${branch_name}
 
   # cd back into the project root directory
   cd ..

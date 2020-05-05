@@ -27,7 +27,7 @@ steps:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
       - echo "HUB INSTALLED"
-      - echo hub -v
+      - hub --version
       - make test
 
   - name: notify-in-slack-tests

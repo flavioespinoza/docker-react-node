@@ -16,7 +16,7 @@ trigger:
  
 platform:
   os: linux
-  arch: ubuntu
+  arch: arm64
 
 workspace:
   base: /node

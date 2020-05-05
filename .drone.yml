@@ -28,9 +28,9 @@ steps:
     commands:
       - brew install hub
       - curl -o- -L https://yarnpkg.com/install.sh | bash
-      - git clone https://github.com/github/hub.git
+      - git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git
       - cd hub
-      - make install
+      - make install prefix=/usr/local
       - hub --version
 
   - name: notify-in-slack-tests

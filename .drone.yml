@@ -26,7 +26,6 @@ steps:
     image: node:10.16.3
     pull: default
     commands:
-      - brew install hub
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git
       - cd hub

@@ -30,6 +30,7 @@ steps:
       - mkdir ~/.linuxbrew/bin
       - ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
       - eval $(~/.linuxbrew/bin/brew shellenv)
+      - bash sync-examples.sh
 
   - name: notify-in-slack-tests
     image: plugins/slack

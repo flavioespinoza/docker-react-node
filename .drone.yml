@@ -17,7 +17,7 @@ platform:
   arch: amd64
 
 workspace:
-  base: /node
+  base: /
 
 steps:
   - name: install-brew-hub then do stuff

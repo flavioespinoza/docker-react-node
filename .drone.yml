@@ -16,7 +16,7 @@ trigger:
  
 platform:
   os: linux
-  arch: amd64
+  arch: ubuntu
 
 workspace:
   base: /node
@@ -27,9 +27,8 @@ steps:
     pull: default
     commands:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
-      - git clone --config transfer.fsckobjects=false --config receive.fsckobjects=false --config fetch.fsckobjects=false https://github.com/github/hub.git
-      - cd hub
-      - make install prefix=/usr/local
+      - curl -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-arm64-2.14.2.tgz | tar zx
+      - sudo install -t /usr/local/bin hub
       - hub --version
 
   - name: notify-in-slack-tests

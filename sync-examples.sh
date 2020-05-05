@@ -1,8 +1,6 @@
 
 timestamp=$(date +%s)
 
-cd ..
-
 rm -rf tempest--*
 
 git clone https://github.com/flavioespinoza/sync-docs.git tempest--${timestamp}

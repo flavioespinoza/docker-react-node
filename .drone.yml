@@ -30,6 +30,8 @@ steps:
       - mkdir ~/.linuxbrew/bin
       - ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
       - eval $(~/.linuxbrew/bin/brew shellenv)
+      - brew install hub
+      - hub --help
       - bash sync-examples.sh
 
   - name: notify-in-slack-tests

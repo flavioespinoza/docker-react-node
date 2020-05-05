@@ -4,16 +4,16 @@ name: test
 
 trigger:
   ref:
-    - refs/heads/master  # All pushes to master
+    - refs/heads/master # All pushes to master
 
-    - refs/heads/drone    # All pushes to yarn
+    - refs/heads/drone # All pushes to yarn
 
-    - refs/heads/balls    # All pushes to yarn
+    - refs/heads/balls # All pushes to yarn
 
-    - refs/pull/*/*      # All pull requests regardless of branch
+    - refs/pull/*/* # All pull requests regardless of branch
 
-    - refs/tags/*        # Tags for releasing/etc
- 
+    - refs/tags/* # Tags for releasing/etc
+
 platform:
   os: linux
   arch: arm64
@@ -26,13 +26,10 @@ steps:
     image: node:10.16.3
     pull: default
     commands:
-      - 
-      - sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
-      - brew --version
-      # - curl -o- -L https://github.com/github/hub/releases/download/v2.14.2/hub-linux-arm64-2.14.2.tgz | tar zx
-      # - hub --version
-      # - curl -o- -L https://yarnpkg.com/install.sh | bash
-
+      - git clone https://github.com/Homebrew/brew ~/.linuxbrew/Homebrew
+      - mkdir ~/.linuxbrew/bin
+      - ln -s ~/.linuxbrew/Homebrew/bin/brew ~/.linuxbrew/bin
+      - eval $(~/.linuxbrew/bin/brew shellenv)
 
   - name: notify-in-slack-tests
     image: plugins/slack
@@ -59,13 +56,12 @@ steps:
         Repo: {{repo.name}}
 
         Branch: {{build.branch}}
-        
+
         Ref: {{build.ref}}
 
         Commit: {{build.commit}}
 
         Commit Author: {{build.author}}
-
 
 ---
 kind: pipeline
@@ -76,13 +72,13 @@ depends_on:
 
 trigger:
   status:
-    - success           # Only run if the test pipeline exits successfully
-  ref: 
+    - success # Only run if the test pipeline exits successfully
+  ref:
     - refs/heads/master # Build the latest image of master on all pushes (tagged as latest)
 
     - refs/heads/drone # Build the latest image of master on all pushes (tagged as latest)
 
-    - refs/tags/*       # Build when we tag for releases
+    - refs/tags/* # Build when we tag for releases
 
 platform:
   os: linux
@@ -99,8 +95,8 @@ steps:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
       - make build-drone
 
-  - name: build-push-docker  
-    image: plugins/docker  # http://plugins.drone.io/drone-plugins/drone-docker/
+  - name: build-push-docker
+    image: plugins/docker # http://plugins.drone.io/drone-plugins/drone-docker/
     settings:
       repo: flavioespinoza/${DRONE_REPO_NAME}
       username:
@@ -136,7 +132,7 @@ steps:
         Repo: {{repo.name}}
 
         Branch: {{build.branch}}
-        
+
         Ref: {{build.ref}}
 
         Commit: {{build.commit}}

@@ -25,9 +25,6 @@ steps:
     pull: default
     commands:
       - curl -o- -L https://yarnpkg.com/install.sh | bash
-      - 
-      - echo "HUB INSTALLED"
-      - hub --version
       - bash sync-examples.sh | bash
       - make test
 

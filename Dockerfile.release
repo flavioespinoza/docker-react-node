@@ -11,6 +11,10 @@ COPY ./ 	/wsdev/authnet-app/
 
 # RUN mkdir -p /wsdev/authnet-app && cp -a /tmp/node_modules /wsdev/authnet-app
 
+# See https://create-react-app.dev/docs/proxying-api-requests-in-development#invalid-host-header-errors-after-configuring-proxy
+# Note we are doing in NGINX that fronts this
+ENV DANGEROUSLY_DISABLE_HOST_CHECK=true
+
 WORKDIR /wsdev/authnet-app
 
 # Required for linux sass binary
